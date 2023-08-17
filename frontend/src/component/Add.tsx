@@ -1,6 +1,13 @@
 import React, { useRef } from "react";
 import { useAppDispatch } from "../store/store";
-import { addPerson, savePerson } from "../store/features/personSlice";
+import { savePerson } from "../store/features/personSlice";
+
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 const Add = () => {
     const username = useRef<string>("");
@@ -9,19 +16,35 @@ const Add = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <div>
-            <label>Person username</label>
-            <input type="text" onChange={(e) => (username.current = e.target.value)} />
+        <Container>
+            <Row>
+                <Col md={{ span: 6, offset: 3 }}>
 
-            <label>Person email</label>
-            <input type="text" onChange={(e) => (email.current = e.target.value)} />
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Email address"
+                        className="mb-3"
+                    >
+                        <Form.Control type="email" placeholder="name@example.com" />
+                    </FloatingLabel>
+                    <FloatingLabel controlId="floatingPassword" label="Password">
+                        <Form.Control type="password" placeholder="Password" />
+                    </FloatingLabel>
 
-            <label>Person password</label>
-            <input type="text" onChange={(e) => (password.current = e.target.value)} />
 
-            <button onClick={() => dispatch(savePerson({ username: username.current, email: email.current, password: password.current }))}>Add</button>
+                    <label>Person username</label>
+                    <input type="text" onChange={(e) => (username.current = e.target.value)} />
 
-        </div>
+                    <label>Person email</label>
+                    <input type="text" onChange={(e) => (email.current = e.target.value)} />
+
+                    <label>Person password</label>
+                    <input type="text" onChange={(e) => (password.current = e.target.value)} />
+
+                    <Button variant="primary" onClick={() => dispatch(savePerson({ username: username.current, email: email.current, password: password.current }))}>Add</Button>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 
