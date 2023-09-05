@@ -6,17 +6,6 @@
 # Ignore editor and IDE files
 .vscode
 .idea
-*.swp
-*.swo
-*.swn
-*.swm
-*.swl
-*.swk
-*.swo
-*.swn
-*.swo
-*.swp
-*~
 
 # Ignore system and temporary files
 .DS_Store
@@ -29,29 +18,6 @@ Thumbs.db
 node_modules
 npm-debug.log
 yarn-error.log
-*.lock
-*.bak
-*.BAK
-*.backup
-*.swp
-*.swo
-*.swn
-*.swm
-
-# Ignore documentation and test files
-*.md
-*.markdown
-*.html
-*.txt
-*.json
-*.xml
-*.yml
-*.yaml
-*.tgz
-*.gz
-*.zip
-*.tar
-*.rar
 
 # Ignore configuration files
 .env
