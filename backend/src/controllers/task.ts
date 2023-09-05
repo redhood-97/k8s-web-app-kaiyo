@@ -1,4 +1,4 @@
-import { Task, getTasks, createTask, updateTask, deleteTask, updateStatus } from "db/tasks";
+import { Task, getTasks, createTask, updateTask, deleteTask, updateStatus } from "../db/tasks";
 import { Request, Response } from "express";
 
 export const retrieve = async (req: Request, res: Response) => {

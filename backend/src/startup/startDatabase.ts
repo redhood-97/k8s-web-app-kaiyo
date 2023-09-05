@@ -5,7 +5,7 @@ const connect = async () => {
     const connectionString =
         process.env.MONGO_CONNECTION_STRING || "mongodb://localhost:27017";
     const dbName = "k8s-web-app";
-
+    logger.info(`database connection ${connectionString} `);
     try {
         await mongoose.connect(connectionString, {
             dbName,
