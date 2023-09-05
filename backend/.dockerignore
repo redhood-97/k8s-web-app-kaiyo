@@ -1,0 +1,70 @@
+# Ignore version control system files
+.git
+.svn
+.hg
+
+# Ignore editor and IDE files
+.vscode
+.idea
+*.swp
+*.swo
+*.swn
+*.swm
+*.swl
+*.swk
+*.swo
+*.swn
+*.swo
+*.swp
+*~
+
+# Ignore system and temporary files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.pid
+
+# Ignore dependency and build-related files
+node_modules
+npm-debug.log
+yarn-error.log
+*.lock
+*.bak
+*.BAK
+*.backup
+*.swp
+*.swo
+*.swn
+*.swm
+
+# Ignore documentation and test files
+*.md
+*.markdown
+*.html
+*.txt
+*.json
+*.xml
+*.yml
+*.yaml
+*.tgz
+*.gz
+*.zip
+*.tar
+*.rar
+
+# Ignore configuration files
+.env
+.env.*
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Ignore build artifacts
+/build
+/dist
+/out
+
+# Ignore any other files or directories specific to your project
+# Add them here as needed
