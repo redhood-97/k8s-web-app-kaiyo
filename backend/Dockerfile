@@ -17,5 +17,5 @@ RUN npm run build
 EXPOSE 8080
 
 # invoke the process. 
-CMD ["node", "./dist/src/startup/createServer.js"]
+CMD ["npm","run","prod"]
 
