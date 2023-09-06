@@ -6,6 +6,13 @@ import logger from "../utils/logger";
 const appEnv = process.env.ENV || "";
 
 export default () => {
+
+    if (appEnv === "production"){
+        logger.info("production env loaded from secrets")
+        return;
+    }
+
+    logger.info("Loading configuration file");
     dotEnv.config({
         path: path.join(basePath, `${appEnv}.env`),
     });

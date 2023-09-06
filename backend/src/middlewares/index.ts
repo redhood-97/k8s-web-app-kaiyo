@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-
 import { merge } from "lodash";
-
 import { getUserBySessionToken } from "../db/users";
 
 export const isAuthenticated = async (
@@ -10,8 +8,6 @@ export const isAuthenticated = async (
     next: NextFunction
 ) => {
     try {
-        // TODO: CHange this key to come from the env files.
-
         const sessionToken = req.cookies[process.env.COOKIE_KEY_NAME];
         if (!sessionToken) {
             return res.sendStatus(403);

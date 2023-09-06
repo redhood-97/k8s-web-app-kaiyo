@@ -1,5 +1,4 @@
 import express from "express";
-
 import { getInstanceInfo, ping } from "../controllers/instance";
 
 export default (router: express.Router) => {

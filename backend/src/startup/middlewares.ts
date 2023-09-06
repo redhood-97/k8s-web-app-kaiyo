@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 import router from "../router";
 const middlewares = async (app: Express) => {
     try {
-        // logger.info("")
+        logger.info("Middlewares connected");
         await Promise.all([
             app.use(express.json({ limit: "10mb" })),
             app.use(express.urlencoded({ extended: false, limit: "10mb" })),
@@ -18,7 +18,7 @@ const middlewares = async (app: Express) => {
             app.use(bodyParser.json()),
             app.use("/", router()),
         ]);
-        logger.info("Middlewares connected");
+        logger.info("Middlewares finished");
     } catch (error) {
         logger.error(`Error in connecting middlewares ${error}`);
     }

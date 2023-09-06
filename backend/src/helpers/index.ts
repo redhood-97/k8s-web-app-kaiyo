@@ -1,5 +1,5 @@
 import crypto from "crypto";
-const APPLICATION_SECRET = "kaushik-test-application-k8s";
+const APPLICATION_SECRET = process.env.APPLICATION_SECRET;
 
 export const random = () => crypto.randomBytes(128).toString("base64");
 

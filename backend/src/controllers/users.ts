@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
-
-import { getUsers, deleteUser, updateUser, User } from "../db/users";
+import {  User, findAll, remove as Remove, update as Update } from "../db/users";
 import { random, authentication } from "../helpers";
 
 export const retrieveUsers = async (req: Request, res: Response) => {
     try {
-        const users = await getUsers();
+        const users = await findAll();
         return res.status(200).json(users);
     } catch (error) {
         return res.sendStatus(400);
@@ -16,8 +15,7 @@ export const remove = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
 
-        const deletedUser = await deleteUser(id);
-
+        const deletedUser = await Remove(+id);
         return res.status(200).json(deletedUser);
     } catch (error) {
         return res.sendStatus(400);
@@ -34,13 +32,11 @@ export const update = async (req: Request, res: Response) => {
         const userToUpdate: User = {
             email,
             username,
-            authentication: {
-                salt,
-                password: authentication(salt, password),
-            },
+            salt,
+            password: authentication(salt, password),
         };
 
-        const updatedUser = await updateUser(id, userToUpdate);
+        const updatedUser = await Update(+id, userToUpdate);
 
         return res.status(200).json(updatedUser);
     } catch (error) {
