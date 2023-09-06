@@ -7,7 +7,7 @@ import logger from "../utils/logger";
 export default async (app: Express) => {
     try {
         logger.info("app is starting");
-        setupEnvVars();
+        // setupEnvVars();
         middlewares(app);
         startDatabase();
     } catch (error) {

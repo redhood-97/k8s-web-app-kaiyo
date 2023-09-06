@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 node:18-alpine
+FROM --platform=amd64 node:18-alpine
 
 WORKDIR /app
 
@@ -17,5 +17,5 @@ RUN npm run build
 EXPOSE 8080
 
 # invoke the process. 
-CMD ["node", "./dist/src/index.js"]
+CMD ["node", "./dist/src/startup/createServer.js"]
 

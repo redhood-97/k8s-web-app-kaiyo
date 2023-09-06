@@ -36,9 +36,9 @@ export const ping = (req: Request, res: Response) => {
     data: {
         message: "pong",
         hostname: os.hostname(),
-        cpuCores: os.cpus(),
         totalMemory: os.totalmem(),
         freeMemory: os.freemem(),
+        connection: process.env.MONGO_CONNECTION_STRING || "broken"
     }
   });
 };
