@@ -64,8 +64,6 @@ jobs:
       - name: Commit and Push
         run: |
           cd astuto-web-app
-          cat deployment.yaml
-          cat ~/.netrc
           git add deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
