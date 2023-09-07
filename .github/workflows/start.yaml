@@ -5,7 +5,8 @@ on:
     branches:
       - main  # Adjust the branch name as needed
 
-permissions: write-all
+permissions:
+  contents: write
 
 jobs:
   build-test-and-deploy:
@@ -51,7 +52,7 @@ jobs:
           git config --global user.name "kaushikkishore"
           git config --global user.email "kk12391@gmail.com"
           git config credential.helper store
-          echo "machine github.com login kaushikkishore password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
+          echo "machine github.com login kaushikkishore password ${{ secrets.ACTIONS_ACCESS_TOKEN }}" > ~/.netrc
 
       - name: Checkout Kubernetes code
         uses: actions/checkout@v3 
