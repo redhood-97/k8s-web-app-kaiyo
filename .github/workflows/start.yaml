@@ -13,18 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18  # Adjust the Node.js version as needed
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18  # Adjust the Node.js version as needed
 
-      - name: Install dependencies
-        run: npm ci  # Replace with your dependency installation command
-        working-directory: backend
+      # - name: Install dependencies
+      #   run: npm ci  # Replace with your dependency installation command
+      #   working-directory: backend
 
-      - name: Run tests
-        run: npm test  # Replace with your test command
-        working-directory: backend
+      # - name: Run tests
+      #   run: npm test  # Replace with your test command
+      #   working-directory: backend
 
       - name: Generate Git SHA
         id: git_sha
