@@ -46,7 +46,7 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "Kaushik Kishore"
+          git config --global user.name "kaushikkishore"
           git config --global user.email "kk12391@gmail.com"
           git config credential.helper store
           gh auth login --with-token <<<"${{ secrets.ACTIONS_ACCESS_TOKEN }}"
