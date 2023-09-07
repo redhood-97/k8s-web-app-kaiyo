@@ -1,0 +1,59 @@
+name: BTD
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
+
+jobs:
+  build-test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Adjust the Node.js version as needed
+
+      - name: Install dependencies
+        run: npm ci  # Replace with your dependency installation command
+        working-directory: backend
+
+      - name: Run tests
+        run: npm test  # Replace with your test command
+        working-directory: backend
+
+      - name: Generate Git SHA
+        id: git_sha
+        run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Docker image
+        run: |
+          docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} .
+          docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} kaushikkishore/astuto-web-app:latest
+
+      - name: Push Docker image
+        run: |
+          docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}
+          docker push kaushikkishore/astuto-web-app:latest
+
+      - name: Checkout Kubernetes code
+        uses: actions/checkout@v3 
+        with:
+          repository: kaushikkishore/k8s-deployment
+          ref: main  # Adjust the branch name as needed
+
+      - name: Update Deployment YAML
+        run: |
+          sed -i "s#image: kaushikkishore/astuto-web-app:latest#image: kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}#" deployment.yaml
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add deployment.yaml
+          git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
+          git push
