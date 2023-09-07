@@ -5,8 +5,7 @@ on:
     branches:
       - main  # Adjust the branch name as needed
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   build-test-and-deploy:
