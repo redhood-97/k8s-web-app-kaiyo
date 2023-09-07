@@ -52,7 +52,8 @@ jobs:
 
       - name: Update Deployment YAML
         run: |
-          sed -i "s#image: kaushikkishore/astuto-web-app:latest#image: kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}#" astuto-web-app/deploymemt.yaml
+          cd k8s-deployment/astuto-web-app
+          sed -i "s#image: kaushikkishore/astuto-web-app:latest#image: kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}#" deploymemt.yaml
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add deployment.yaml
