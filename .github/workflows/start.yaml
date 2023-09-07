@@ -30,19 +30,19 @@ jobs:
         id: git_sha
         run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
 
-      - name: Login to Docker Hub
-        run: docker login -u kaushikkishore -p ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Login to Docker Hub
+      #   run: docker login -u kaushikkishore -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build Docker image
-        working-directory: backend
-        run: |
-          docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} .
-          docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} kaushikkishore/astuto-web-app:latest
+      # - name: Build Docker image
+      #   working-directory: backend
+      #   run: |
+      #     docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} .
+      #     docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} kaushikkishore/astuto-web-app:latest
 
-      - name: Push Docker image
-        run: |
-          docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}
-          docker push kaushikkishore/astuto-web-app:latest
+      # - name: Push Docker image
+      #   run: |
+      #     docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}
+      #     docker push kaushikkishore/astuto-web-app:latest
 
       - name: Configure Git
         run: |
@@ -60,8 +60,7 @@ jobs:
       - name: Update Deployment YAML
         run: |
           cd astuto-web-app
-          sed -i "s#^image: kaushikkishore/astuto-web-app:.*#image: kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}#" deployment.yaml
-
+          sed -i '/image:/s/.*/image: kaushikkishore\/astuto-web-app:${{ steps.git_sha.outputs.sha }}/' deployment.yaml
       - name: Commit and Push
         run: |
           cd astuto-web-app
