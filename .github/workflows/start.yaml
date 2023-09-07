@@ -52,6 +52,8 @@ jobs:
 
       - name: Update Deployment YAML
         run: |
+          ll
+          pwd
           cd astuto-web-app
           sed -i "s#image: kaushikkishore/astuto-web-app:latest#image: kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}#" deploymemt.yaml
           git config user.name "GitHub Actions"
