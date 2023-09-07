@@ -34,6 +34,7 @@ jobs:
         run: docker login -u kaushikkishore -p ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
+        working-directory: backend
         run: |
           docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} .
           docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} kaushikkishore/astuto-web-app:latest
