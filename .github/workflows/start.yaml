@@ -49,6 +49,7 @@ jobs:
           git config --global user.name "Kaushik Kishore"
           git config --global user.email "kk12391@gmail.com"
           git config credential.helper store
+          gh auth login --with-token <<<"${{ secrets.ACTIONS_ACCESS_TOKEN }}"
           echo "machine github.com login kaushikkishore password ${{ secrets.ACTIONS_ACCESS_TOKEN }}" > ~/.netrc
 
       - name: Checkout Kubernetes code
@@ -64,6 +65,7 @@ jobs:
       - name: Commit and Push
         run: |
           cd astuto-web-app
+          gh auth login --with-token <<<"${{ secrets.ACTIONS_ACCESS_TOKEN }}"
           git add deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
