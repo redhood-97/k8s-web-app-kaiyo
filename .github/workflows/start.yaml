@@ -50,26 +50,23 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "kaushikkishore"
-          git config --global user.email "kk12391@gmail.com"
-          git config credential.helper store
-          echo "machine github.com login kaushikkishore password ${{ secrets.ACTIONS_ACCESS_TOKEN }}" > ~/.netrc
           gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
 
       - name: Checkout Kubernetes code
-        uses: actions/checkout@v3 
-        with:
-          repository: kaushikkishore/k8s-deployment
-          ref: main  # Adjust the branch name as needed
+        run: |
+          gh repo clone kaushikkishore/k8s-deployment
+          cd k8s-deployment
+          ls -al
         
       - name: Update Deployment YAML
         run: |
           cd astuto-web-app
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ steps.git_sha.outputs.sha }}/' deployment.yaml
+
       - name: Commit and Push
         run: |
           cd astuto-web-app
-          gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
+          ls -al
           git add deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
