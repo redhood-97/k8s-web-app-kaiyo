@@ -67,14 +67,9 @@ jobs:
           ls -al
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-test-and-deploy.outputs.sha }}/' k8s-deployment/astuto-web-app/deployment.yaml
 
-      - name: Debugging
-        run: |
-          ls -al
-          cat k8s-deployment/astuto-web-app/deployment.yaml
-
       - name: Commit and Push
         run: |
-          cd ..
+          ls -al
           gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
           git config user.email "kk12391@gmail.com"
           git config user.name "Kaushik Kishore"
