@@ -65,8 +65,7 @@ jobs:
       - name: Update Deployment YAML
         run: |
           ls -al
-          cd k8s-deployment/astuto-web-app
-          sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-test-and-deploy.outputs.sha }}/' deployment.yaml
+          sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-test-and-deploy.outputs.sha }}/' k8s-deployment/astuto-web-app/deployment.yaml
 
       - name: Debugging
         run: |
