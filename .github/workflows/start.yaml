@@ -36,11 +36,8 @@ jobs:
       - name: Generate Git SHA
         id: git_sha
         run: | 
-          git_sha=$(git rev-parse --short HEAD)
-          echo "::set-output name=sha::$(git rev-parse --short HEAD)"
-          echo "$(git rev-parse --short HEAD)"
-          echo "GIT_SHA=$git_sha" >> "$GITHUB_ENV"
-          echo $GITHUB_ENV
+          echo "GIT_SHA=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       # - name: Login to Docker Hub
       #   run: docker login -u kaushikkishore -p ${{ secrets.DOCKER_PASSWORD }}
 
