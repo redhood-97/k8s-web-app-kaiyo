@@ -32,7 +32,9 @@ jobs:
 
       - name: Generate Git SHA
         id: git_sha
-        run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
+        run: | 
+          echo "::set-output name=sha::$(git rev-parse --short HEAD)"
+          echo "$(git rev-parse --short HEAD)"
 
       # - name: Login to Docker Hub
       #   run: docker login -u kaushikkishore -p ${{ secrets.DOCKER_PASSWORD }}
@@ -54,7 +56,9 @@ jobs:
     steps:
       - name: Generate deployement Id
         id: deploy_sha
-        run: echo "::set-output name=shadep::$(git rev-parse --short HEAD)"
+        run: |
+          echo "::set-output name=shadep::$(git rev-parse --short HEAD)"
+          echo "random shadep ${{ steps.deploy_sha.outputs.shadep }}"
 
       - name: Configure Git
         run: |
