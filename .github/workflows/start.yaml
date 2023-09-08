@@ -68,12 +68,16 @@ jobs:
           cd k8s-deployment/astuto-web-app
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-test-and-deploy.outputs.sha }}/' deployment.yaml
 
+      - name: Debugging
+        run: |
+          ls -al
+          cat deployment.yaml
+
       - name: Commit and Push
         run: |
           git config user.email "kk12391@gmail.com"
           git config user.name "Kaushik Kishore"
           gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
-          ls -al
           git add deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
