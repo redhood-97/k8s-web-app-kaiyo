@@ -66,9 +66,6 @@ jobs:
           cd astuto-web-app
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ steps.git_sha.outputs.sha }}/' deployment.yaml
       - name: Commit and Push
-        permissions:
-          contents: write
-          repository-projects: write
         run: |
           git config --global user.name "kaushikkishore"
           git config --global user.email "kk12391@gmail.com"
