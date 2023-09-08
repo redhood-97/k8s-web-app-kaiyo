@@ -64,18 +64,16 @@ jobs:
     needs: build-and-test
 
     steps:
-      - name: Checkout Kubernetes code
+      - name: Checkout Deployment code
         uses: actions/checkout@v4
         with: 
           repository: kaushikkishore/k8s-deployment
           ref: main
-          token: ${{ secrets.ACTIONS_ACCESS_TOKEN }}
+          token: ${{ secrets.ACTIONS_ACCESS_TOKEN }} # confgiured for 3 months
     
       - name: Update Deployment YAML
         run: |
-          echo ${{ needs.build-and-test.outputs.GIT_SHA }}
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-and-test.outputs.GIT_SHA }}/' astuto-web-app/deployment.yaml
-          cat astuto-web-app/deployment.yaml | grep image
 
       - name: Commit and Push
         run: |
