@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      GIT_SHA: ${{ steps.git_sha.outputs.sha }}
+      GIT_SHA: ${{ steps.git_sha.outputs.GIT_SHA }}
 
     steps:
       - name: Checkout code
