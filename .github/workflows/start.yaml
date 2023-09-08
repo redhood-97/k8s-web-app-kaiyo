@@ -78,14 +78,14 @@ jobs:
       - name: Update Deployment YAML
         run: |
           ls -al
-          sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-test-and-deploy.outputs.sha }}/' astuto-web-app/deployment.yaml
+          sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ needs.build-test-and-deploy.outputs.GIT_SHA }}/' astuto-web-app/deployment.yaml
 
       - name: Commit and Push
         run: |
           git config user.email "kk12391@gmail.com"
           git config user.name "kaushikkishore"
           git add astuto-web-app/deployment.yaml
-          git commit -m "Update Docker image in deployment to Git SHA: ${{ needs.build-test-and-deploy.outputs.sha }}"
+          git commit -m "Update Docker image in deployment to Git SHA: ${{ needs.build-test-and-deploy.outputs.GIT_SHA }}"
           git push origin main
 
       
