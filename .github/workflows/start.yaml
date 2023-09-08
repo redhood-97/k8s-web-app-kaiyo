@@ -37,7 +37,7 @@ jobs:
           echo "::set-output name=sha::$(git rev-parse --short HEAD)"
           echo "$(git rev-parse --short HEAD)"
           echo "GIT_SHA=$git_sha" >> "$GITHUB_ENV"
-
+          echo $GITHUB_ENV
       # - name: Login to Docker Hub
       #   run: docker login -u kaushikkishore -p ${{ secrets.DOCKER_PASSWORD }}
 
@@ -70,7 +70,7 @@ jobs:
 
       - name: Debug Outputs
         run: | 
-          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha $GIT_SHA"
+          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha $GIT_SHA ENV $GITHUB_ENV"
         
       - name: Update Deployment YAML
         run: |
