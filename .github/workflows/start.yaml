@@ -59,22 +59,13 @@ jobs:
     needs: build-test-and-deploy
 
     steps:
-      
-      - name: Configure Git
-        run: |
-          gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
-
       - name: Checkout Kubernetes code
         uses: actions/checkout@v4
         with: 
           repository: kaushikkishore/k8s-deployment
           ref: main
           token: ${{ secrets.ACTIONS_ACCESS_TOKEN }}
-
-      - name: Debug Outputs
-        run: | 
-          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha ${{ needs.build-test-and-deploy.outputs.GIT_SHA }}"
-        
+    
       - name: Update Deployment YAML
         run: |
           ls -al
