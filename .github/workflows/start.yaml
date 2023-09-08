@@ -74,9 +74,11 @@ jobs:
 
       - name: Commit and Push
         run: |
+          cd ..
+          gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
           git config user.email "kk12391@gmail.com"
           git config user.name "Kaushik Kishore"
-          gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
+          
           git add deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
