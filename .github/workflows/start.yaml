@@ -69,12 +69,10 @@ jobs:
 
       - name: Commit and Push
         run: |
-          ls -al
           cd k8s-deployment
-          ls -al
           gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
           git config user.email "kk12391@gmail.com"
-          git config user.name "Kaushik Kishore"
+          git config user.name "kaushikkishore"
           
           git add astuto-web-app/deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
