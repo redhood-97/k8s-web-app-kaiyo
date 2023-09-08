@@ -60,6 +60,7 @@ jobs:
         
       - name: Update Deployment YAML
         run: |
+          ls -al
           cd astuto-web-app/astuto-web-app
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ steps.git_sha.outputs.sha }}/' deployment.yaml
 
