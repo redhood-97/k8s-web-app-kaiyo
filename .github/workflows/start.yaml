@@ -6,6 +6,9 @@
 # This workflow is commiting the sha vaersion to the deployment repo 
 # which will further take the deployment using the argo workflow
 
+# yaml-language-server: $schema='none'
+
+
 name: Build test and deploy
 
 on:
@@ -48,12 +51,12 @@ jobs:
       - name: Build Docker image
         working-directory: backend
         run: |
-          docker build -t kaushikkishore/astuto-web-app:${{ steps.GIT_SHA.outputs.sha }} .
-          docker tag kaushikkishore/astuto-web-app:${{ steps.GIT_SHA.outputs.sha }} kaushikkishore/astuto-web-app:latest
+          docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} .
+          docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} kaushikkishore/astuto-web-app:latest
 
       - name: Push Docker image
         run: |
-          docker push kaushikkishore/astuto-web-app:${{ steps.GIT_SHA.outputs.sha }}
+          docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}
           docker push kaushikkishore/astuto-web-app:latest
 
   update-deployment: 
