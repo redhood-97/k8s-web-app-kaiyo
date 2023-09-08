@@ -42,3 +42,15 @@ export const ping = (req: Request, res: Response) => {
     }
   });
 };
+
+export const health = (req: Request, res: Response) => {
+  const year = new Date().getFullYear();
+  const month = new Date().getMonth();
+  const day = new Date().getDate();
+  res.status(200).json({
+    success: true,
+    data: {
+      version: `${year}.${month}.${day}`,
+    }
+  })
+}
