@@ -60,6 +60,9 @@ jobs:
         with:
           repository: kaushikkishore/k8s-deployment
           ref: main  # Adjust the branch name as needed
+        run : |
+          cd k8s-deployment
+          ls -al
 
       - name: Update Deployment YAML
         run: |
@@ -67,13 +70,9 @@ jobs:
           sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ steps.git_sha.outputs.sha }}/' deployment.yaml
       - name: Commit and Push
         run: |
-          git config --global user.name "kaushikkishore"
-          git config --global user.email "kk12391@gmail.com"
-          git config credential.helper store
-          echo "machine github.com login kaushikkishore password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
           cd astuto-web-app
           git add deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
-          git push
+          git push origin main
 
       
