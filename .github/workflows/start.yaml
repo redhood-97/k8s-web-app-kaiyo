@@ -73,7 +73,7 @@ jobs:
           gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
           git config user.email "kk12391@gmail.com"
           git config user.name "kaushikkishore"
-          
+          git remote set-url origin https://${{ secrets.GITHUB_TOKEN }}@github.com/kaushikkishore/k8s-deployment
           git add astuto-web-app/deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
