@@ -51,12 +51,12 @@ jobs:
       - name: Build Docker image
         working-directory: backend
         run: |
-          docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} .
-          docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }} kaushikkishore/astuto-web-app:latest
+          docker build -t kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.GIT_SHA }} .
+          docker tag kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.GIT_SHA }} kaushikkishore/astuto-web-app:latest
 
       - name: Push Docker image
         run: |
-          docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}
+          docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.GIT_SHA }}
           docker push kaushikkishore/astuto-web-app:latest
 
   update-deployment: 
