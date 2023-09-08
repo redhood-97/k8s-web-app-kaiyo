@@ -54,7 +54,7 @@ jobs:
     steps:
       - name: Generate deployement Id
         id: deploy_sha
-        run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
+        run: echo "::set-output name=shadep::$(git rev-parse --short HEAD)"
 
       - name: Configure Git
         run: |
@@ -70,14 +70,14 @@ jobs:
       - name: Update Deployment YAML
         run: |
           ls -al
-          sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ steps.deploy_sha.outputs.sha }}/' astuto-web-app/deployment.yaml
+          sed -i '/image:/s/:.*/: kaushikkishore\/astuto-web-app:${{ steps.deploy_sha.outputs.shadep }}/' astuto-web-app/deployment.yaml
 
       - name: Commit and Push
         run: |
           git config user.email "kk12391@gmail.com"
           git config user.name "kaushikkishore"
           git add astuto-web-app/deployment.yaml
-          git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.deploy_sha.outputs.sha }}"
+          git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.deploy_sha.outputs.shadep }}"
           git push origin main
 
       
