@@ -13,6 +13,9 @@ jobs:
   build-test-and-deploy:
     runs-on: ubuntu-latest
 
+    outputs:
+      GIT_SHA: ${{ steps.git_sha.outputs.sha }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -70,7 +73,7 @@ jobs:
 
       - name: Debug Outputs
         run: | 
-          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha ${{ env.GIT_SHA }}"
+          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha ${{ needs.build-test-and-deploy.outputs.GIT_SHA }}"
         
       - name: Update Deployment YAML
         run: |
