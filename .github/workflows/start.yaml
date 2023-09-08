@@ -70,7 +70,7 @@ jobs:
 
       - name: Debug Outputs
         run: | 
-          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha $GIT_SHA ENV $GITHUB_ENV"
+          echo "Outputs: ${{ toJson(needs.build-test-and-deploy.outputs) }} sha ${{ env.GIT_SHA }}"
         
       - name: Update Deployment YAML
         run: |
