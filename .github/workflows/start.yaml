@@ -1,3 +1,9 @@
+# References: 
+# https://stackoverflow.com/a/75308228
+# https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/ci-cd/github-actions/persist.html
+
+# This workflow is triggered on push to the main branch
+# 
 name: Build test and deploy
 
 on:
@@ -48,9 +54,9 @@ jobs:
           docker push kaushikkishore/astuto-web-app:${{ steps.git_sha.outputs.sha }}
           docker push kaushikkishore/astuto-web-app:latest
 
-  Deployment: 
+  update-deployment: 
     runs-on: ubuntu-latest
-    needs: build-test-and-deploy
+    needs: build-and-test
 
     steps:
       - name: Checkout Kubernetes code
@@ -74,6 +80,3 @@ jobs:
           git push origin main
 
       
-# References: 
-# https://stackoverflow.com/a/75308228
-# https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/ci-cd/github-actions/persist.html
