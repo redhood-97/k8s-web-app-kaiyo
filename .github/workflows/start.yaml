@@ -70,7 +70,7 @@ jobs:
       - name: Debugging
         run: |
           ls -al
-          cat deployment.yaml
+          cat k8s-deployment/astuto-web-app/deployment.yaml
 
       - name: Commit and Push
         run: |
