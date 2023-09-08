@@ -76,7 +76,7 @@ jobs:
           git config user.email "kk12391@gmail.com"
           git config user.name "Kaushik Kishore"
           
-          git add deployment.yaml
+          git add astuto-web-app/deployment.yaml
           git commit -m "Update Docker image in deployment to Git SHA: ${{ steps.git_sha.outputs.sha }}"
           git push origin main
 
