@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import {
     User,
     findAll,
@@ -7,27 +7,27 @@ import {
 } from '@src/db/users';
 import { random, authentication } from '@src/helpers';
 
-export const retrieveUsers = async (req: Request, res: Response) => {
+export const retrieveUsers = async (_req: Request, res: Response, next: NextFunction) => {
     try {
         const users = await findAll();
         return res.status(200).json(users);
     } catch (error) {
-        return res.sendStatus(400);
+        next(error);
     }
 };
 
-export const remove = async (req: Request, res: Response) => {
+export const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;
 
         const deletedUser = await Remove(+id);
         return res.status(200).json(deletedUser);
     } catch (error) {
-        return res.sendStatus(400);
+        next(error);
     }
 };
 
-export const update = async (req: Request, res: Response) => {
+export const update = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id } = req.params;
 
@@ -45,6 +45,6 @@ export const update = async (req: Request, res: Response) => {
 
         return res.status(200).json(updatedUser);
     } catch (error) {
-        return res.sendStatus(400);
+        next(error);
     }
 };

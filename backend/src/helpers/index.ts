@@ -1,7 +1,8 @@
 import crypto from 'crypto';
-const APPLICATION_SECRET = process.env.APPLICATION_SECRET;
 
 export const random = () => crypto.randomBytes(128).toString('base64');
+
+const APPLICATION_SECRET : string  = process.env.APPLICATION_SECRET || random();
 
 export const authentication = (salt: string, password: string) => {
     return crypto

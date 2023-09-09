@@ -6,18 +6,18 @@ import {
     remove as Remove,
     updateStatus as UpdateStatus,
 } from '@src/db/tasks';
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 
-export const retrieve = async (req: Request, res: Response) => {
+export const retrieve = async (_req: Request, res: Response, next: NextFunction) => {
     try {
         const tasks = await Retrieve();
         return res.status(200).json(tasks);
     } catch (error) {
-        return res.status(400).json({ error: error, messsage: error.message });
+        next(error);
     }
 };
 
-export const create = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name } = req.body;
 
@@ -32,11 +32,11 @@ export const create = async (req: Request, res: Response) => {
         const createdTask = await Create(task);
         return res.status(201).json(createdTask);
     } catch (error) {
-        return res.status(400).json({ error: error, messsage: error.message });
+        next(error);
     }
 };
 
-export const update = async (req: Request, res: Response) => {
+export const update = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { name, isCompelted = false } = req.body;
         const identifier = +req.params.id;
@@ -52,21 +52,21 @@ export const update = async (req: Request, res: Response) => {
         const updatedTask = Update(identifier, task);
         return res.status(200).json(updatedTask);
     } catch (error) {
-        return res.sendStatus(400);
+        next(error);
     }
 };
 
-export const remove = async (req: Request, res: Response) => {
+export const remove = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const identifier = +req.params.id;
         const deletedTask = Remove(identifier);
         return res.status(204).json(deletedTask);
     } catch (error) {
-        return res.sendStatus(400);
+        next(error);
     }
 };
 
-export const modifyStatus = async (req: Request, res: Response) => {
+export const modifyStatus = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const identifier = +req.params.id;
 
@@ -75,6 +75,6 @@ export const modifyStatus = async (req: Request, res: Response) => {
         const deletedTask = await UpdateStatus(identifier, isCompelted);
         return res.status(200).json(deletedTask);
     } catch (error) {
-        return res.sendStatus(400);
+        next(error);
     }
 };

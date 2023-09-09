@@ -4,17 +4,38 @@
     "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
-    "module": "NodeNext",
-    "baseUrl": "./src",
-    "outDir": "dist",
-    "sourceMap": true,
-    "noImplicitAny": true,
+    "target": "ESNext", // Use the latest ECMAScript features
+    "module": "CommonJS", // Use CommonJS modules for Node.js
+    "outDir": "./dist", // Output directory for compiled JavaScript files
+    "rootDir": "./src", // Source directory for TypeScript files
+    "strict": true, // Enable strict type checking
+    "esModuleInterop": true, // Allow ES module interoperability
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Enforce consistent file casing
+    "resolveJsonModule": true, // Allow importing JSON files as modules
+    "declaration": true, // Generate declaration files (.d.ts)
+    "declarationDir": "./dist/types", // Output directory for declaration files
+    "sourceMap": true, // Generate source maps for debugging
+    "noImplicitAny": false, // Allow implicit 'any' types
+    "strictNullChecks": true, // Enable strict null checks
+    "strictFunctionTypes": true, // Enable strict checking of function types
+    "strictPropertyInitialization": true, // Enable strict property initialization
+    "noUnusedLocals": true, // Report unused local variables
+    "noUnusedParameters": true, // Report unused parameters
+    "removeComments": true, // Remove comments from compiled JavaScript
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "emitDecoratorMetadata": true, // Emit design-type metadata for decorated declarations
+    "experimentalDecorators": true, // Enable experimental decorators
+    "importHelpers": true, // Use helper functions like `__importDefault` when importing ES modules
+    "lib": ["ES6"], // Add "dom" if you are using browser APIs
+    "baseUrl": "./src", // Base URL for module resolution (set to project root)
     "paths": {  
       "@src/*": ["*"], // Define a path alias for absolute imports
       
     },
   },
   "include": [
-    "src/**/*.ts"
-  ]
+    "src/**/*.ts" // Files to include in compilation
+  ],
+  "exclude": ["node_modules"] // Files to exclude from compilation
 }

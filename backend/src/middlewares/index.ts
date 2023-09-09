@@ -8,7 +8,8 @@ export const isAuthenticated = async (
     next: NextFunction
 ) => {
     try {
-        const sessionToken = req.cookies[process.env.COOKIE_KEY_NAME];
+        const COOKIE_KEY_NAME : string = process.env.COOKIE_KEY_NAME || 'astuto-app' ;
+        const sessionToken = req.cookies[COOKIE_KEY_NAME];
         if (!sessionToken) {
             return res.sendStatus(403);
         }
@@ -22,7 +23,6 @@ export const isAuthenticated = async (
         merge(req, { identity: existingUser });
         next();
     } catch (error) {
-        console.log(error);
-        return res.sendStatus(403);
+        next(error);
     }
 };

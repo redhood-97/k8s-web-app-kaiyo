@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import os from 'os';
 
-export const getInstanceInfo = (req: Request, res: Response) => {
+export const getInstanceInfo = (_req: Request, res: Response) => {
     return res.status(200).json({
         success: true,
         platform: os.platform(),
@@ -28,7 +28,7 @@ export const getInstanceInfo = (req: Request, res: Response) => {
  * @param {import('express').Response} res - The HTTP response object.
  * @returns {void}
  */
-export const ping = (req: Request, res: Response) => {
+export const ping = (_req: Request, res: Response) => {
     // Sends a 200 status code and a JSON response
     res.status(200).json({
         success: true,
@@ -41,7 +41,7 @@ export const ping = (req: Request, res: Response) => {
     });
 };
 
-export const health = (req: Request, res: Response, next: NextFunction) => {
+export const health = (_req: Request, res: Response, next: NextFunction) => {
     try {
         const year = new Date().getFullYear();
         const month = new Date().getMonth();

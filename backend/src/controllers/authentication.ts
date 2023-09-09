@@ -29,7 +29,9 @@ export const login = async (req: express.Request, res: express.Response) => {
 
         await updateSessionToken(user.id, user.sessionToken);
 
-        res.cookie(process.env.COOKIE_KEY_NAME, user.sessionToken, {
+        const COOKIE_KEY_NAME: string = process.env.COOKIE_KEY_NAME || 'astuto-app';
+
+        res.cookie(COOKIE_KEY_NAME, user.sessionToken, {
             domain: process.env.DOMAIN_FOR_COOKIE,
             path: '/',
         });

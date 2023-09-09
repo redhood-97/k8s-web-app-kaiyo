@@ -10,7 +10,7 @@ import { ApplicationError } from '@src/utils/Errors';
 
 const errorHandler = (
     error: ApplicationError,
-    request: Request,
+    _request: Request,
     response: Response,
     next: NextFunction
 ) => {

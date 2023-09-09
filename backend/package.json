@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -rf dist",
     "test": "vitest",
     "start": "nodemon",
     "build": "tsc",
@@ -51,6 +52,7 @@
     "lodash": "4.17.21",
     "mongoose": "7.4.3",
     "pino": "8.15.0",
-    "pino-pretty": "10.2.0"
+    "pino-pretty": "10.2.0",
+    "tslib": "2.6.2"
   }
 }
