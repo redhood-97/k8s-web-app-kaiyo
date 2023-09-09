@@ -6,7 +6,7 @@ import {
     remove as Remove,
     updateStatus as UpdateStatus,
 } from '@src/db/tasks';
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
 
 export const retrieve = async (req: Request, res: Response) => {
     try {
