@@ -12,18 +12,6 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "prod": "npx prisma generate && node ./dist/src/startup/createServer.js"
   },
-  "lint-staged": {
-    "*.{js,ts,json,md}": [
-      "eslint . --fix",
-      "prettier --write \"src/**/*.ts\"",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
