@@ -1,7 +1,9 @@
 import http from "http";
-import app from "../index";
-import logger from "../utils/logger";
 import { AddressInfo } from "net";
+
+import app from "@src/index";
+import logger from "@src/utils/logger";
+
 
 const port: string | number = process.env.SERVER_PORT || 8080;
 

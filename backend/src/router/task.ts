@@ -1,5 +1,5 @@
 import express from "express";
-import { retrieve, remove, create, update, modifyStatus } from "../controllers/task";
+import { retrieve, remove, create, update, modifyStatus } from "@src/controllers/task";
 
 export default (router: express.Router) => {
     router.get("/tasks", retrieve);

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import {  User, findAll, remove as Remove, update as Update } from "../db/users";
-import { random, authentication } from "../helpers";
+import {  User, findAll, remove as Remove, update as Update } from "@src/db/users";
+import { random, authentication } from "@src/helpers";
 
 export const retrieveUsers = async (req: Request, res: Response) => {
     try {

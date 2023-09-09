@@ -1,14 +1,20 @@
 {
+  "ts-node": {
+    // Do not forget to `npm i -D tsconfig-paths`
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
     "module": "NodeNext",
-    "moduleResolution": "node",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "outDir": "dist",
     "sourceMap": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "paths": {  
+      "@src/*": ["*"], // Define a path alias for absolute imports
+      
+    },
   },
   "include": [
-    "src/**/*.ts",
-    "getBasePath.ts"
+    "src/**/*.ts"
   ]
 }

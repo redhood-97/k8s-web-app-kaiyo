@@ -1,7 +1,7 @@
 import * as path from "path";
 import dotEnv from "dotenv";
-import basePath from "../../getBasePath";
-import logger from "../utils/logger";
+
+import logger from "@src/utils/logger";
 
 const appEnv = process.env.ENV || "";
 
@@ -11,10 +11,11 @@ export default () => {
         logger.info("production env loaded from secrets")
         return;
     }
-
-    logger.info("Loading configuration file");
+    const envPath = path.resolve(__dirname, `../${appEnv}.env`);
+    logger.info("Loading configuration file", envPath);
+    
     dotEnv.config({
-        path: path.join(basePath, `${appEnv}.env`),
+        path: envPath
     });
     logger.info("Configuration file loaded");
 };

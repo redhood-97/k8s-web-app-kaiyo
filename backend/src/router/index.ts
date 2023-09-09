@@ -1,8 +1,8 @@
 import express from "express";
-import authentication from "./authetication";
-import users from "./users";
-import instance from "./instance";
-import task from "./task";
+import authentication from "@src/router/authetication";
+import users from "@src/router/users";
+import instance from "@src/router/instance";
+import task from "@src/router/task";
 
 const router = express.Router();
 

@@ -4,7 +4,7 @@ import { Task,
     update as Update, 
     remove as Remove,
     updateStatus as UpdateStatus
-} from "../db/tasks";
+} from "@src/db/tasks";
 import { Request, Response } from "express";
 
 

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import os from "os";
 
 export const getInstanceInfo = (req: Request, res: Response) => {
@@ -37,20 +37,26 @@ export const ping = (req: Request, res: Response) => {
         message: "pong",
         hostname: os.hostname(),
         totalMemory: os.totalmem(),
-        freeMemory: os.freemem(),
-        connection: process.env.MONGO_CONNECTION_STRING || "broken"
+        freeMemory: os.freemem()
     }
   });
 };
 
-export const health = (req: Request, res: Response) => {
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth();
-  const day = new Date().getDate();
-  res.status(200).json({
-    success: true,
-    data: {
-      version: `${year}.${month}.${day}`,
-    }
-  })
+export const health = (req: Request, res: Response, next: NextFunction) => {
+
+  try {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const day = new Date().getDate();
+    res.status(200).json({
+      success: true,
+      data: {
+        version: `${year}.${month}.${day}`,
+      }
+    });
+    
+  } catch (error) {
+    next(error);
+  }
+
 }
