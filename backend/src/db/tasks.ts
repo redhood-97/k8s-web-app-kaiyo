@@ -1,4 +1,4 @@
-import prisma from "@src/utils/libs/prisma";
+import prisma from '@src/utils/libs/prisma';
 
 export interface Task {
     name: string;
@@ -7,46 +7,46 @@ export interface Task {
 
 export const retrieve = async () => {
     return prisma.task.findMany();
-}
+};
 
 export const retrieveById = async (id: number) => {
     return prisma.task.findUnique({
         where: {
-            id: id
-        }
+            id: id,
+        },
     });
-}
+};
 
 export const create = async (task: Task) => {
     return prisma.task.create({
-        data: task
+        data: task,
     });
-}
+};
 
 export const update = async (id: number, task: Task) => {
     return prisma.task.update({
         where: {
-            id: id
+            id: id,
         },
-        data: task
+        data: task,
     });
-}
+};
 
 export const updateStatus = async (id: number, completed: boolean) => {
     return prisma.task.update({
         where: {
-            id: id
+            id: id,
         },
         data: {
-            completed: completed
-        }
+            completed: completed,
+        },
     });
-}
+};
 
 export const remove = async (id: number) => {
     return prisma.task.delete({
         where: {
-            id: id
-        }
+            id: id,
+        },
     });
-}
+};

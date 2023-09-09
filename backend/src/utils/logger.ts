@@ -1,9 +1,9 @@
-import pino from "pino";
-import pretty from "pino-pretty";
+import pino from 'pino';
+import pretty from 'pino-pretty';
 
 const stream = pretty({
     colorize: true,
-    ignore: "pid,hostname",
+    ignore: 'pid,hostname',
     levelFirst: true,
 });
 

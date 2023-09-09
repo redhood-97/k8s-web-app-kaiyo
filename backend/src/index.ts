@@ -1,5 +1,5 @@
-import express from "express";
-import startup from "@src/startup";
+import express from 'express';
+import startup from '@src/startup';
 
 const app = express();
 startup(app);

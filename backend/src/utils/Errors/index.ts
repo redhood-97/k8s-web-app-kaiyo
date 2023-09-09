@@ -1,1 +1,1 @@
-export { ApplicationError } from "./ApplicationError";
+export { ApplicationError } from './ApplicationError';

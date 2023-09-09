@@ -1,7 +1,7 @@
-import express from "express";
+import express from 'express';
 
-import { User, findByEmail, updateSessionToken, create } from "@src/db/users";
-import { random, authentication } from "@src/helpers";
+import { User, findByEmail, updateSessionToken, create } from '@src/db/users';
+import { random, authentication } from '@src/helpers';
 
 export const login = async (req: express.Request, res: express.Response) => {
     try {
@@ -25,21 +25,14 @@ export const login = async (req: express.Request, res: express.Response) => {
 
         // update the user session
         const salt = random();
-        user.sessionToken = authentication(
-            salt,
-            user.id.toString()
-        );
+        user.sessionToken = authentication(salt, user.id.toString());
 
-        await updateSessionToken (user.id, user.sessionToken);
+        await updateSessionToken(user.id, user.sessionToken);
 
-        res.cookie(
-            process.env.COOKIE_KEY_NAME,
-            user.sessionToken,
-            {
-                domain: process.env.DOMAIN_FOR_COOKIE,
-                path: "/",
-            }
-        );
+        res.cookie(process.env.COOKIE_KEY_NAME, user.sessionToken, {
+            domain: process.env.DOMAIN_FOR_COOKIE,
+            path: '/',
+        });
         return res.status(200).json(user).end();
     } catch (error) {
         return res.sendStatus(400);

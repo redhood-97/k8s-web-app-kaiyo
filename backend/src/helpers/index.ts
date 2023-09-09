@@ -1,11 +1,11 @@
-import crypto from "crypto";
+import crypto from 'crypto';
 const APPLICATION_SECRET = process.env.APPLICATION_SECRET;
 
-export const random = () => crypto.randomBytes(128).toString("base64");
+export const random = () => crypto.randomBytes(128).toString('base64');
 
 export const authentication = (salt: string, password: string) => {
     return crypto
-        .createHmac("sha256", [salt, password].join("/"))
+        .createHmac('sha256', [salt, password].join('/'))
         .update(APPLICATION_SECRET)
-        .digest("hex");
+        .digest('hex');
 };

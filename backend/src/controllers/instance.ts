@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import os from "os";
+import { NextFunction, Request, Response } from 'express';
+import os from 'os';
 
 export const getInstanceInfo = (req: Request, res: Response) => {
     return res.status(200).json({
@@ -19,7 +19,6 @@ export const getInstanceInfo = (req: Request, res: Response) => {
         endianness: os.endianness(),
         release: os.release(),
         eolChar: os.EOL,
-
     });
 };
 
@@ -30,33 +29,30 @@ export const getInstanceInfo = (req: Request, res: Response) => {
  * @returns {void}
  */
 export const ping = (req: Request, res: Response) => {
-  // Sends a 200 status code and a JSON response
-  res.status(200).json({
-    success: true,
-    data: {
-        message: "pong",
-        hostname: os.hostname(),
-        totalMemory: os.totalmem(),
-        freeMemory: os.freemem()
-    }
-  });
+    // Sends a 200 status code and a JSON response
+    res.status(200).json({
+        success: true,
+        data: {
+            message: 'pong',
+            hostname: os.hostname(),
+            totalMemory: os.totalmem(),
+            freeMemory: os.freemem(),
+        },
+    });
 };
 
 export const health = (req: Request, res: Response, next: NextFunction) => {
-
-  try {
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const day = new Date().getDate();
-    res.status(200).json({
-      success: true,
-      data: {
-        version: `${year}.${month}.${day}`,
-      }
-    });
-    
-  } catch (error) {
-    next(error);
-  }
-
-}
+    try {
+        const year = new Date().getFullYear();
+        const month = new Date().getMonth();
+        const day = new Date().getDate();
+        res.status(200).json({
+            success: true,
+            data: {
+                version: `${year}.${month}.${day}`,
+            },
+        });
+    } catch (error) {
+        next(error);
+    }
+};

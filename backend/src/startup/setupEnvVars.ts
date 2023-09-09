@@ -1,21 +1,20 @@
-import * as path from "path";
-import dotEnv from "dotenv";
+import * as path from 'path';
+import dotEnv from 'dotenv';
 
-import logger from "@src/utils/logger";
+import logger from '@src/utils/logger';
 
-const appEnv = process.env.ENV || "";
+const appEnv = process.env.ENV || '';
 
 export default () => {
-
-    if (appEnv === "production"){
-        logger.info("production env loaded from secrets")
+    if (appEnv === 'production') {
+        logger.info('production env loaded from secrets');
         return;
     }
     const envPath = path.resolve(__dirname, `../${appEnv}.env`);
-    logger.info("Loading configuration file", envPath);
-    
+    logger.info('Loading configuration file', envPath);
+
     dotEnv.config({
-        path: envPath
+        path: envPath,
     });
-    logger.info("Configuration file loaded");
+    logger.info('Configuration file loaded');
 };
