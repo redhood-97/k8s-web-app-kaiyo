@@ -20,7 +20,7 @@ export const retrieveById = async (id: number) => {
     });
 };
 
-export const create = async (task: Prisma.TaskCreateInput) => {
+export const create = async (task: Task) => {
     return prisma.task.create({
         data: task,
     });

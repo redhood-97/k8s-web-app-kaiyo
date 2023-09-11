@@ -26,7 +26,7 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
             return res.sendStatus(400);
         }
 
-        const task: Prisma.TaskCreateInput = {
+        const task: Task = {
             name, 
         };
 
