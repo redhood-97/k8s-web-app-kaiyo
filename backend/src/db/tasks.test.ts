@@ -1,6 +1,14 @@
-// test/sample.test.ts
-import { expect, test } from 'vitest';
+//test/sample.test.ts
+import { expect, test, vi } from 'vitest'
+import { create } from '@src/db/tasks';
+import prisma from '@src/utils/libs/__mocks__/prisma';
 
-test('1 === 1', () => {
-    expect(1).toBe(1);
+vi.mock('@src/utils/libs/prisma');
+
+test('create task should return the generated task', async () => {
+  const newTask = { name: 'user@prisma.io' };
+  prisma.task.create.mockResolvedValue({ ...newTask, id: 1, completed: null });
+
+  const task = await create(newTask)
+  expect(task).toStrictEqual({ ...newTask, id: 1, completed: null })
 });

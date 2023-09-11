@@ -1,5 +1,8 @@
 import prisma from '@src/utils/libs/prisma';
 
+// TODO : Import this and then you can use Prisma.TaskCreateInput, Prisma.TaskUpdateInput
+import { Prisma } from '@prisma/client'
+
 export interface Task {
     name: string;
     completed?: boolean;
@@ -17,7 +20,7 @@ export const retrieveById = async (id: number) => {
     });
 };
 
-export const create = async (task: Task) => {
+export const create = async (task: Prisma.TaskCreateInput) => {
     return prisma.task.create({
         data: task,
     });
