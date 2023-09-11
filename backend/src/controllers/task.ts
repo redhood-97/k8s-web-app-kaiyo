@@ -6,7 +6,8 @@ import {
     remove as Remove,
     updateStatus as UpdateStatus,
 } from '@src/db/tasks';
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express';
+import { Prisma } from '@prisma/client'
 
 export const retrieve = async (_req: Request, res: Response, next: NextFunction) => {
     try {
@@ -25,8 +26,8 @@ export const create = async (req: Request, res: Response, next: NextFunction) =>
             return res.sendStatus(400);
         }
 
-        const task: Task = {
-            name,
+        const task: Prisma.TaskCreateInput = {
+            name, 
         };
 
         const createdTask = await Create(task);

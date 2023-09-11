@@ -1,3 +1,4 @@
+import logger from '@src/utils/logger';
 import { NextFunction, Request, Response } from 'express';
 import os from 'os';
 
@@ -44,8 +45,11 @@ export const ping = (_req: Request, res: Response) => {
 export const health = (_req: Request, res: Response, next: NextFunction) => {
     try {
         const year = new Date().getFullYear();
+        logger.info(`Year is ${year}`);
         const month = new Date().getMonth();
+        logger.info(`Month is ${month}`);
         const day = new Date().getDate();
+        logger.info(`Day is ${day}`);
         res.status(200).json({
             success: true,
             data: {

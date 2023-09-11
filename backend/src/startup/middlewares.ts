@@ -44,7 +44,9 @@ const errorHandler = (
 
 const middlewares = async (app: Express) => {
     try {
-        logger.info('Middlewares connected');
+        
+
+        logger.info('Middlewares connecting');
         await Promise.all([
             app.use(express.json({ limit: '10mb' })),
             app.use(express.urlencoded({ extended: false, limit: '10mb' })),
