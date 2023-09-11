@@ -7,7 +7,7 @@ import {
     updateStatus as UpdateStatus,
 } from '@src/db/tasks';
 import { NextFunction, Request, Response } from 'express';
-import { Prisma } from '@prisma/client'
+
 
 export const retrieve = async (_req: Request, res: Response, next: NextFunction) => {
     try {
