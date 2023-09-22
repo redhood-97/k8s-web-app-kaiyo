@@ -5,7 +5,7 @@ import {
     create,
     update,
     modifyStatus,
-} from '@src/controllers/task';
+} from '../controllers/task';
 
 export default (router: express.Router) => {
     router.get('/tasks', retrieve);

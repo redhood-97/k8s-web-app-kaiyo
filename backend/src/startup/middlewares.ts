@@ -3,10 +3,11 @@ import cors from 'cors';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import router from 'router';
 
-import logger from '@src/utils/logger';
-import { ApplicationError } from '@src/utils/Errors';
+import router from '../router';
+
+import logger from '../utils/logger';
+import { ApplicationError } from '../utils/Errors';
 
 const errorHandler = (
     error: ApplicationError,

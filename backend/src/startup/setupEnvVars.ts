@@ -1,7 +1,7 @@
 import * as path from 'path';
 import dotEnv from 'dotenv';
 
-import logger from '@src/utils/logger';
+import logger from '../utils/logger';
 
 const appEnv = process.env.ENV || '';
 

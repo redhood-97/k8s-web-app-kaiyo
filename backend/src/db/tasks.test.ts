@@ -1,7 +1,7 @@
 //test/sample.test.ts
 import { expect, test, vi } from 'vitest'
-import { create } from '@src/db/tasks';
-import prisma from '@src/utils/libs/__mocks__/prisma';
+import { create } from './tasks';
+import prisma from '../utils/libs/__mocks__/prisma';
 
 vi.mock('@src/utils/libs/prisma');
 

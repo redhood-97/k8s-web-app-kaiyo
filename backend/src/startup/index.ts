@@ -1,8 +1,8 @@
 import { Express } from 'express';
 
-import setupEnvVars from '@src/startup/setupEnvVars';
-import middlewares from '@src/startup/middlewares';
-import logger from '@src/utils/logger';
+import setupEnvVars from './setupEnvVars';
+import middlewares from './middlewares';
+import logger from '../utils/logger';
 
 export default async (app: Express) => {
     try {

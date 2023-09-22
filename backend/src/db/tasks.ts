@@ -1,4 +1,4 @@
-import prisma from '@src/utils/libs/prisma';
+import prisma from '../utils/libs/prisma';
 
 // TODO : Import this and then you can use Prisma.TaskCreateInput, Prisma.TaskUpdateInput
 // import { Prisma } from '@prisma/client'

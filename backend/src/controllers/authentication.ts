@@ -1,7 +1,7 @@
 import express from 'express';
 
-import { User, findByEmail, updateSessionToken, create } from '@src/db/users';
-import { random, authentication } from '@src/helpers';
+import { User, findByEmail, updateSessionToken, create } from '../db/users';
+import { random, authentication } from '../helpers';
 
 export const login = async (req: express.Request, res: express.Response) => {
     try {

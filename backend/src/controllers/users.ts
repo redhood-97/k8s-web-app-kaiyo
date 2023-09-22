@@ -4,8 +4,8 @@ import {
     findAll,
     remove as Remove,
     update as Update,
-} from '@src/db/users';
-import { random, authentication } from '@src/helpers';
+} from '../db/users';
+import { random, authentication } from '../helpers';
 
 export const retrieveUsers = async (_req: Request, res: Response, next: NextFunction) => {
     try {

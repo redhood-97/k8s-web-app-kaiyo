@@ -5,7 +5,7 @@ import {
     update as Update,
     remove as Remove,
     updateStatus as UpdateStatus,
-} from '@src/db/tasks';
+} from '../db/tasks';
 import { NextFunction, Request, Response } from 'express';
 
 
