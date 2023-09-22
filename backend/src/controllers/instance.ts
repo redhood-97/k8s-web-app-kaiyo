@@ -1,6 +1,7 @@
 import logger from '../utils/logger';
 import { NextFunction, Request, Response } from 'express';
 import os from 'os';
+import  nv from 'node-vault';
 
 export const getInstanceInfo = (_req: Request, res: Response) => {
     return res.status(200).json({
@@ -60,3 +61,18 @@ export const health = (_req: Request, res: Response, next: NextFunction) => {
         next(error);
     }
 };
+
+export const readVault = async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+        const vault = nv( { apiVersion: 'v1', endpoint: process.env.VAULT_ADDR, token: process.env.VAULT_TOKEN });
+        const response = await vault.read("astuto/rds")
+        logger.info(response.data);
+
+        res.status(200).json({
+            success: true,
+            data: response.data,
+        });
+    } catch (error) {
+        next(error);
+    }
+}
