@@ -3,7 +3,7 @@ import { expect, test, vi } from 'vitest'
 import { create } from './tasks';
 import prisma from '../utils/libs/__mocks__/prisma';
 
-vi.mock('@src/utils/libs/prisma');
+vi.mock('../utils/libs/prisma');
 
 test('create task should return the generated task', async () => {
   const newTask = { name: 'user@prisma.io' };
